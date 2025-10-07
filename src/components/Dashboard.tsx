@@ -2,8 +2,10 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { TrendingUp, TrendingDown, Cloud, Droplets, Wind, Package, AlertCircle } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Dashboard = () => {
+  const { t } = useLanguage();
   const predictions = [
     { name: "Nyama Choma", demand: "high", change: "+15%", stock: "low", icon: TrendingUp },
     { name: "Ugali", demand: "medium", change: "+5%", stock: "good", icon: Package },
@@ -25,52 +27,52 @@ const Dashboard = () => {
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold mb-4">
             <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              AI Dashboard
+              {t('dashboard.title')}
             </span>
           </h2>
           <p className="text-lg text-muted-foreground">
-            Real-time predictions for your restaurant
+            {t('dashboard.subtitle')}
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <Card className="hover:shadow-lg transition-all">
             <CardHeader className="pb-3">
-              <CardTitle className="text-sm font-medium text-muted-foreground">Today's Revenue</CardTitle>
+              <CardTitle className="text-sm font-medium text-muted-foreground">{t('dashboard.revenue')}</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-3xl font-bold text-primary">KES 12,450</p>
-              <p className="text-sm text-muted-foreground mt-1">+12% from yesterday</p>
+              <p className="text-sm text-muted-foreground mt-1">+12% {t('dashboard.revenue.change')}</p>
             </CardContent>
           </Card>
 
           <Card className="hover:shadow-lg transition-all">
             <CardHeader className="pb-3">
-              <CardTitle className="text-sm font-medium text-muted-foreground">Waste Reduced</CardTitle>
+              <CardTitle className="text-sm font-medium text-muted-foreground">{t('dashboard.waste')}</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-3xl font-bold text-secondary">68%</p>
-              <p className="text-sm text-muted-foreground mt-1">This month</p>
+              <p className="text-sm text-muted-foreground mt-1">{t('dashboard.waste.period')}</p>
             </CardContent>
           </Card>
 
           <Card className="hover:shadow-lg transition-all">
             <CardHeader className="pb-3">
-              <CardTitle className="text-sm font-medium text-muted-foreground">Food Items</CardTitle>
+              <CardTitle className="text-sm font-medium text-muted-foreground">{t('dashboard.items')}</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-3xl font-bold text-foreground">24</p>
-              <p className="text-sm text-muted-foreground mt-1">Active inventory</p>
+              <p className="text-sm text-muted-foreground mt-1">{t('dashboard.items.active')}</p>
             </CardContent>
           </Card>
 
           <Card className="hover:shadow-lg transition-all">
             <CardHeader className="pb-3">
-              <CardTitle className="text-sm font-medium text-muted-foreground">Savings</CardTitle>
+              <CardTitle className="text-sm font-medium text-muted-foreground">{t('dashboard.savings')}</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-3xl font-bold text-accent">KES 45K</p>
-              <p className="text-sm text-muted-foreground mt-1">Last 30 days</p>
+              <p className="text-sm text-muted-foreground mt-1">{t('dashboard.savings.period')}</p>
             </CardContent>
           </Card>
         </div>
@@ -81,7 +83,7 @@ const Dashboard = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Cloud className="w-5 h-5 text-primary" />
-                Weather Impact
+                {t('dashboard.weather')}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -94,21 +96,21 @@ const Dashboard = () => {
                 <div className="flex items-center gap-2">
                   <Droplets className="w-4 h-4 text-primary" />
                   <div>
-                    <p className="text-xs text-muted-foreground">Humidity</p>
+                    <p className="text-xs text-muted-foreground">{t('dashboard.humidity')}</p>
                     <p className="font-semibold">{weatherData.humidity}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
                   <Wind className="w-4 h-4 text-primary" />
                   <div>
-                    <p className="text-xs text-muted-foreground">Wind</p>
+                    <p className="text-xs text-muted-foreground">{t('dashboard.wind')}</p>
                     <p className="font-semibold">{weatherData.wind}</p>
                   </div>
                 </div>
               </div>
 
               <div className="bg-accent/10 p-3 rounded-lg border border-accent/20">
-                <p className="text-sm text-foreground">{weatherData.impact}</p>
+                <p className="text-sm text-foreground">{t('dashboard.impact')}</p>
               </div>
             </CardContent>
           </Card>
@@ -116,7 +118,7 @@ const Dashboard = () => {
           {/* AI Predictions */}
           <Card className="lg:col-span-2 hover:shadow-lg transition-all">
             <CardHeader>
-              <CardTitle>AI Food Predictions</CardTitle>
+              <CardTitle>{t('dashboard.predictions')}</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
@@ -138,14 +140,14 @@ const Dashboard = () => {
                       <div>
                         <p className="font-semibold">{item.name}</p>
                         <p className="text-sm text-muted-foreground">
-                          Demand: <span className="capitalize">{item.demand}</span>
+                          {t('dashboard.demand')}: <span className="capitalize">{item.demand}</span>
                         </p>
                       </div>
                     </div>
                     
                     <div className="flex items-center gap-4">
                       <Badge variant={item.stock === "low" ? "destructive" : "secondary"}>
-                        Stock: {item.stock}
+                        {t('dashboard.stock')}: {item.stock}
                       </Badge>
                       <span className={`font-semibold ${
                         item.change.startsWith("+") ? "text-primary" : "text-destructive"
@@ -160,16 +162,15 @@ const Dashboard = () => {
               <div className="mt-6 p-4 bg-accent/5 border border-accent/20 rounded-lg flex items-start gap-3">
                 <AlertCircle className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-semibold text-foreground mb-1">AI Recommendation</p>
+                  <p className="font-semibold text-foreground mb-1">{t('dashboard.recommendation')}</p>
                   <p className="text-sm text-muted-foreground">
-                    Increase Sukuma Wiki stock by 30% tomorrow. Weather forecast shows rainy conditions, 
-                    typically increasing demand for warm meals.
+                    {t('dashboard.recommendation.text')}
                   </p>
                 </div>
               </div>
 
               <Button className="w-full mt-4 bg-gradient-to-r from-primary to-primary/90">
-                Update Inventory
+                {t('dashboard.update')}
               </Button>
             </CardContent>
           </Card>

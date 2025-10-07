@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { Wifi, WifiOff } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const OfflineIndicator = () => {
   const [isOnline, setIsOnline] = useState(navigator.onLine);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const handleOnline = () => setIsOnline(true);
@@ -27,12 +29,12 @@ const OfflineIndicator = () => {
         {isOnline ? (
           <>
             <Wifi className="w-4 h-4" />
-            Online
+            {t('common.online')}
           </>
         ) : (
           <>
             <WifiOff className="w-4 h-4" />
-            Offline Mode
+            {t('common.offline')}
           </>
         )}
       </Badge>

@@ -1,42 +1,45 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Brain, CloudRain, WifiOff, CreditCard, TrendingUp, Shield } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Features = () => {
+  const { t } = useLanguage();
+  
   const features = [
     {
       icon: Brain,
-      title: "AI Predictions",
-      description: "Akili Bandia inakupa ushauri wa kile cha kuhifadhi kulingana na data ya siku nyingi",
+      titleKey: "features.ai.title",
+      descKey: "features.ai.desc",
       color: "text-primary"
     },
     {
       icon: CloudRain,
-      title: "Weather Integration",
-      description: "Ubashiri wa hali ya hewa unatumika kubaini mahitaji ya chakula",
+      titleKey: "features.weather.title",
+      descKey: "features.weather.desc",
       color: "text-secondary"
     },
     {
       icon: WifiOff,
-      title: "Offline Mode",
-      description: "Fanya kazi bila mtandao - data itahifadhiwa na kusync baadaye",
+      titleKey: "features.offline.title",
+      descKey: "features.offline.desc",
       color: "text-accent"
     },
     {
       icon: CreditCard,
-      title: "Intasend Payments",
-      description: "Lipa na M-Pesa, kadi, au akaunti ya benki kwa usalama",
+      titleKey: "features.payment.title",
+      descKey: "features.payment.desc",
       color: "text-primary"
     },
     {
       icon: TrendingUp,
-      title: "Analytics",
-      description: "Pata ripoti kamili za biashara yako na okoa pesa zaidi",
+      titleKey: "features.analytics.title",
+      descKey: "features.analytics.desc",
       color: "text-secondary"
     },
     {
       icon: Shield,
-      title: "Secure & Reliable",
-      description: "Data yako iko salama na system inafanya kazi kila wakati",
+      titleKey: "features.secure.title",
+      descKey: "features.secure.desc",
       color: "text-accent"
     }
   ];
@@ -46,10 +49,10 @@ const Features = () => {
       <div className="container mx-auto max-w-7xl">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Vipengele Vyetu
+            {t('features.title')}
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Teknolojia ya kisasa inayokusaidia kupunguza hasara na kuongeza faida
+            {t('features.subtitle')}
           </p>
         </div>
 
@@ -63,9 +66,9 @@ const Features = () => {
                 <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center mb-6`}>
                   <feature.icon className={`w-8 h-8 ${feature.color}`} />
                 </div>
-                <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
+                <h3 className="text-xl font-semibold mb-3">{t(feature.titleKey)}</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  {feature.description}
+                  {t(feature.descKey)}
                 </p>
               </CardContent>
             </Card>
