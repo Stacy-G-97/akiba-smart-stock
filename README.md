@@ -78,14 +78,6 @@ npm run dev
 
 ## 🌐 Deployment
 
-**Live App**: Your Akiba AI app will be deployed at your Lovable staging URL
-
-Deploy updates using Lovable:
-
-1. Click the **Publish** button in the Lovable editor (top right)
-2. Your app will be live at `[your-project-name].lovable.app`
-3. Connect a custom domain in Project > Settings > Domains
-
 **Project URL**: https://lovable.dev/projects/56c8fe93-8493-439a-b216-bf3728752a56
 
 For more details, visit [Lovable Deployment Docs](https://docs.lovable.dev/)
