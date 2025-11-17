@@ -58,8 +58,8 @@ const Hero = () => {
                 {t('hero.cta1')}
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Button size="lg" variant="outline" className="border-primary/30 hover:bg-primary/5">
-                {t('hero.cta2')}
+              <Button size="lg" variant="outline" className="border-primary/30 hover:bg-primary/5" onClick={() => window.location.href = '/pricing'}>
+                View Pricing
               </Button>
             </div>
           </div>
